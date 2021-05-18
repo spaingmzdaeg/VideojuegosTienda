@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte Pedidos</title>
+    <style>
+        .back {
+         background-color: 'red'
+        }
+    </style>
+</head>
+<body>
+    {{pedido}}
+       <hr>
+    {{pedido.cliente|linebreaks}}
+       <hr>
+    {{pedido.videojuego|linebreaks}}
+       <hr>
+    {{pedido.nota|linebreaks}}
+       <hr>
+    {{pedido.fecha_pedido|linebreaks}}
+       <hr>
+    {{pedido.estatus|linebreaks}}
+       <hr>
+
+    {{pedido.videojuego.caratula}}
+       <br>
+    {{pedido.videojuego.url}}
+       <br>
+    {{pedido.videojuego.path}}
+       <br>
+
+       
+
+    <img src={{pedido.videojuego.caratula.path}} height='200px'>
+    <img src="media/logo.png" height='200px'>    
+
+
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+{% extends 'cuentas/main.html' %}
+
+{% block content %}
+
+{% include 'cuentas/estatus.html' %}
+
+<br>
+<div class="row">
+    <div class="col-md-5">
+        <h5>  CLIENTES:</h5>
+        <hr>
+        <div class="card card-body">
+            <a class="btn btn-primary btn-sm btn-block" href="">
+                Crear Cliente
+            </a>
+            <table class="table table-sm">
+                <tr>
+                    <th></th>
+                    <th>Cliente</th>
+                    <th>Telefono</th>
+                    <th>em@il</th>
+                </tr>
+                {% for cliente in clientes  %}
+                    <tr>
+                        <td><a class="btn btn-sm btn-info" href="{% url 'cliente' cliente.id %}">Ver</a></td>
+                        <td>{{cliente.primer_nombre}} {{cliente.primer_apellido}}</td>
+                        <td>{{cliente.telefono}}</td>
+                        <td>{{cliente.email}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-7">
+        <h5>ULTIMOS CINCO PEDIDOS</h5>
+        <hr>
+        <div class="card card-body">
+            <table class="table table-sm">
+                <tr>
+                    <th>Videojuego</th>
+                    <th>Fecha de Pedido</th>
+                    <th>Estatus</th>
+                    <th>Actualizar</th>
+                    <th>Eliminar</th>
+                </tr>
+
+                {% for pedido in listaPedidos  %}
+                    <tr>
+                        <td>{{pedido.videojuego}}</td>
+                        <td>{{pedido.fecha_pedido}}</td>
+                        <td>{{pedido.estatus}}</td>
+                        <td><a class="btn btn-sm btn-info" href="{% url 'actualizar_pedido' pedido.id %}">Actualizar</a></td>
+                        <td><a class="btn btn-sm btn-danger" href="{% url 'eliminar_pedido' pedido.id %}">Eliminar</a></td>
+                    </tr>
+                {% endfor %}
+
+            </table>
+                {% if listaPedidos.has_other_pages %}
+  <ul class="pagination">
+    {% if listaPedidos.has_previous %}
+      <li><a href="?page={{ listaPedidos.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in listaPedidos.paginator.page_range %}
+      {% if listaPedidos.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if listaPedidos.has_next %}
+      <li><a href="?page={{ listaPedidos.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+        </div>
+
+    </div>
+
+</div>
+
+
+{% endblock %}

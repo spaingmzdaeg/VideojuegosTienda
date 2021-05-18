@@ -1,0 +1,15 @@
+{% extends 'cuentas/base_reporte.html' %}
+
+{% block title %}
+pedidos
+{% endblock title %}
+
+{% block content %}
+    {% for pedido in object_list %}
+        {{pedido}}
+        <a href="{% url 'pedido-pdf-view' pedido.pk %}"><button class = "btn btn-primary">pdf</button></a>
+        <br>
+        <hr>
+    {% endfor %}
+
+{% endblock content %}

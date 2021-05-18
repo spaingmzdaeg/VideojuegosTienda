@@ -1,0 +1,21 @@
+{% extends 'cuentas/main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-body">
+            <form id="agregarPedido "action="" method="POST">
+                {% csrf_token %}
+				{{ form.management_form }}
+				{% for field in form %}
+					{{field}}
+					<hr>
+				{% endfor %}
+                <input type="submit" value="Agregar">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

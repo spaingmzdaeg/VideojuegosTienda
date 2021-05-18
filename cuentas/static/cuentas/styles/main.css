@@ -1,0 +1,16 @@
+#logo{
+
+}
+body{
+    background-color: #ebeff5;
+}
+#ordenes-totales{
+    background-color: #4cb4c7;
+}
+#ordenes-liberadas{
+    background-color: #7abecc;
+}
+#ordenes-pendientes{
+    background-color: #7CD1C0;
+}
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% extends 'cuentas/main.html' %}
+
+{% block content %}
+
+<br>
+
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <h5>Clientes</h5>
+        </div>
+        <div class="card card-body">
+            <table class="table">
+                <tr>
+                    <th>Primer Nombre</th>
+                    <th>Segundo Nombre</th>
+                    <th>Primer Apellido</th>
+                    <th>Segundo Apellido</th>
+                    <th>em@il</th>
+                    <th>Telefono</th>
+                    <th>Fecha de Creacion</th>
+                </tr>
+                {% for i in clientes %}
+                   <tr>
+                     <td>{{ i.primer_nombre }}</td>
+                     <td>{{i.segundo_nombre}}</td>
+                     <td>{{i.primer_apellido}}</td>
+                     <td>{{i.segundo_apellido}}</td>
+                     <td>{{i.email}}</td>
+                     <td>{{i.telefono}}</td>
+                     <td>{{i.fecha_creacion}}</td>
+                   </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

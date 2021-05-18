@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% extends 'cuentas/main.html' %}
+
+{% block content %}
+
+<br>
+
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <h5>Videojuegos</h5>
+        </div>
+        <div class="card card-body">
+            <table class="table">
+                <tr>
+                    <th>Caratula</th>
+                    <th>Nombre</th>
+                    <th>Plataforma</th>
+                    <th>Genero</th>
+                    <th>Clasificacion</th>
+                    <th>Descripcion</th>
+                    <th>Fecha de Lanzamiento</th>
+                    <th>Precio</th>
+                    <th>Tags</th>
+                    <th>Stock</th>
+                </tr>
+                {% for i in videojuegos %}
+                   <tr>
+                     <td><img src="{{ i.caratula.url }}"></td>
+                     <td>{{i.nombre}}</td>
+                     <td>{{i.plataforma}}</td>
+                     <td>{{i.genero}}</td>
+                     <td>{{i.clasificacion}}</td>
+                     <td>{{i.descripcion}}</td>
+                     <td>{{i.fecha_lanzamiento}}</td>
+                     <td>{{i.precio}}</td>
+                     <td>{{i.tags}}</td>
+                     <td>{{i.stock}}</td>
+                   </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

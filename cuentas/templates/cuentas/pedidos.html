@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% extends 'cuentas/main.html' %}
+
+{% block content %}
+
+<br>
+
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+         <form method="get">
+			   {{myFilter.form}}
+               <button class="btn btn-primary" type="submit">Buscar</button>
+            <h5>Pedidos</h5>
+        </div>
+        <div class="card card-body">
+        {% for pedido in pedidos %}
+        {% endfor %}
+         <a class="btn btn-primary btn-sm btn-block" href="{% url 'crear_pedido_tabla' %}">
+                Crear Pedido
+            </a>
+            <a class="btn btn-primary btn-sm btn-danger" href="{% url 'pedidos-list-view' %}">
+                Generar Reporte
+            </a>
+            <a class="btn btn-primary btn-sm btn-warning" href="{% url 'pie-chart' %}">
+                Generar Grafica
+            </a>
+            <table class="table">
+                <tr>
+                    <th>Cliente</th>
+                    <th>Videojuego</th>
+                    <th>Nota</th>
+                    <th>Fecha del Pedido</th>
+                    <th>Estatus</th>
+                </tr>
+                {% for i in listaPedidos %}
+                   <tr>
+                     <td>{{ i.cliente }}</td>
+                     <td>{{i.videojuego}}</td>
+                     <td>{{i.nota}}</td>
+                     <td>{{i.fecha_pedido}}</td>
+                     <td>{{i.estatus}}</td>
+                     <td><a class="btn btn-sm btn-info" href="{% url 'actualizar_pedido' i.id %}">Actualizar</a></td>
+                     <td><a class="btn btn-sm btn-danger" href="{% url 'eliminar_pedido' i.id %}">Eliminar</a></td>
+                   </tr>
+                {% endfor %}
+            </table>
+            {% if listaPedidos.has_other_pages %}
+  <ul class="pagination">
+    {% if listaPedidos.has_previous %}
+      <li><a href="?page={{ listaPedidos.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in listaPedidos.paginator.page_range %}
+      {% if listaPedidos.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if listaPedidos.has_next %}
+      <li><a href="?page={{ listaPedidos.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+        </div>
+
+    </div>
+</div>
+
+
+
+{% endblock %}
